@@ -42,11 +42,13 @@ class CustomBottomNavBar extends StatelessWidget {
   _navButton(String iconStr, String title, int index, {Color? color}) {
     return InkWell(
       onTap: () => onTapBottomBar(index, context),
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [SvgPicture.asset(iconStr),
-        SizedBox(height: 2,),
-         Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 12),)],
+      child: SizedBox(
+        width: 100,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [SvgPicture.asset(iconStr),
+           Text(title, style: TextStyle(color: color, fontWeight: FontWeight.bold, fontSize: 12),)],
+        ),
       ),
     );
   }
