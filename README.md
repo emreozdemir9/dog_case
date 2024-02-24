@@ -6,7 +6,7 @@ A new Flutter project.
 
 - Search input ile aradığınız tür varsa o türe ait 5 random image listelenir.
 
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 17 50](https://github.com/emreozdemir9/dog_case/assets/97756363/e75949aa-1bb9-4908-a5f7-fdf83a96ebe5)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 18 04](https://github.com/emreozdemir9/dog_case/assets/97756363/e98b9684-8d6d-467f-aedf-9ca6882ee60d)
-![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 18 10](https://github.com/emreozdemir9/dog_case/assets/97756363/5f0126de-e053-47ec-86cb-c64a741bfe80)
+
+![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 17 50](https://github.com/emreozdemir9/dog_case/assets/97756363/f1473021-649f-413a-8601-fb054cccd7bc) ![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 18 10](https://github.com/emreozdemir9/dog_case/assets/97756363/d01ab0e5-d9f2-4928-9120-364c6a691147) ![Simulator Screenshot - iPhone 15 Pro Max - 2024-02-24 at 05 18 04](https://github.com/emreozdemir9/dog_case/assets/97756363/346fca0d-64cb-4ee4-a210-64eb5d997e75)
+
 
