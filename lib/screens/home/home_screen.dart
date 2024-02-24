@@ -5,6 +5,7 @@ import 'package:dogs_case/screens/dog_details/dog_details_screen.dart';
 import 'package:dogs_case/screens/home/bloc/home_bloc.dart';
 import 'package:dogs_case/screens/home/bloc/home_event.dart';
 import 'package:dogs_case/screens/home/home_widgets.dart';
+import 'package:dogs_case/screens/home/utils/utils.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,63 +19,69 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     DraggableScrollableController draggableController =
         DraggableScrollableController();
+
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 16),
       child: Stack(
         children: [
-         dogList.isEmpty ? const Center(child: Text(StringUtils.trySearchingWithAnotherWord),) : Align(
-            alignment: Alignment.topCenter,
-            child: GridView.builder(
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 2,
-                  mainAxisSpacing: 16.0,
-                  crossAxisSpacing: 16.0,
-                ),
-                shrinkWrap: true,
-                itemCount: dogList.length,
-                itemBuilder: (ctx, i) {
-                  return InkWell(
-                    onTap: () {
-                      showCupertinoModalPopup(
-                        context: context,
-                        barrierColor: Colors.black45,
-                        builder: (context) {
-                          return DogDetails(dogList[i]);
-                        },
-                      );
-                    },
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8),
-                      child: Stack(
-                        children: [
-                          CachedNetworkImage(
-                            imageUrl: dogList[i].imageUrl ?? '',
-                            fit: BoxFit.cover,
-                            height: double.infinity,
-                            width: double.infinity,
-                          ),
-                          Align(
-                            alignment: Alignment.bottomLeft,
-                            child: Container(
-                              padding: const EdgeInsets.all(8),
-                              decoration: const BoxDecoration(
-                                  color: Colors.black38,
-                                  borderRadius: BorderRadius.only(
-                                      topRight: Radius.circular(16),
-                                      bottomLeft: Radius.circular(8))),
-                              child: Text(
-                                dogList[i].name ?? '',
-                                style: const TextStyle(
-                                    fontSize: 16, color: Colors.white),
-                              ),
+          dogList.isEmpty
+              ? const Center(
+                  child: Text(StringUtils.trySearchingWithAnotherWord),
+                )
+              : Align(
+                  alignment: Alignment.topCenter,
+                  child: GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        mainAxisSpacing: 16.0,
+                        crossAxisSpacing: 16.0,
+                      ),
+                      shrinkWrap: true,
+                      itemCount: dogList.length,
+                      itemBuilder: (ctx, i) {
+                        return InkWell(
+                          onTap: () {
+                            showCupertinoModalPopup(
+                              context: context,
+                              barrierColor: Colors.black45,
+                              builder: (context) {
+                                return DogDetails(dogList[i]);
+                              },
+                            );
+                          },
+                          child: ClipRRect(
+                            borderRadius: BorderRadius.circular(8),
+                            child: Stack(
+                              children: [
+                                CachedNetworkImage(
+                                  imageUrl: dogList[i].imageUrl ?? '',
+                                  fit: BoxFit.cover,
+                                  height: double.infinity,
+                                  width: double.infinity,
+                                ),
+                                Align(
+                                  alignment: Alignment.bottomLeft,
+                                  child: Container(
+                                    padding: const EdgeInsets.all(8),
+                                    decoration: const BoxDecoration(
+                                        color: Colors.black38,
+                                        borderRadius: BorderRadius.only(
+                                            topRight: Radius.circular(16),
+                                            bottomLeft: Radius.circular(8))),
+                                    child: Text(
+                                      dogList[i].name ?? '',
+                                      style: const TextStyle(
+                                          fontSize: 16, color: Colors.white),
+                                    ),
+                                  ),
+                                ),
+                              ],
                             ),
                           ),
-                        ],
-                      ),
-                    ),
-                  );
-                }),
-          ),
+                        );
+                      }),
+                ),
           BlocProvider(
             create: (context) => HomeBloc(context),
             child: HomeWidgets.searchBarUI(
@@ -101,7 +108,8 @@ class HomeScreen extends StatelessWidget {
                               int searchLine = 1;
                               return HomeWidgets.searchBar(
                                   context, scrollController, (searchVal) {
-                                if ('\n'.allMatches(searchVal).length + 1 >
+                                if (Utils.updateTextLineCountForSearchHeight(
+                                            context, searchVal) >
                                         searchLine &&
                                     searchLine < 5) {
                                   searchLine++;
